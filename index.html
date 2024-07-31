@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redact</title>
+  </head>
+  <body>
+    <p>Wrap the text you want to redact in angle brackets.</p>
+    <textarea id="input" rows="4" cols="50">foo <bar> baz</textarea>
+    <br />
+    <br />
+    <div id="output" style="width: 300px;"></div>
+    <script>
+      var input = document.getElementById('input');
+      var output = document.getElementById('output');
+      function redact(str) {
+        let result = '';
+        let redacting = false;
+        for (let i = 0; i < str.length; i++) {
+          if (str[i] == '<') {
+            redacting = true;
+            continue;
+          }
+          if (str[i] == '>') {
+            redacting = false;
+            continue;
+          }
+          if (redacting) {
+            result += '█';
+          } else {
+            result += str[i];
+          }
+        }
+        return result;
+      }
+      output.innerHTML = redact(input.value);
+      document.getElementById('input').addEventListener('input', function() {
+        output.innerHTML = redact(input.value);
+      });
+      input.focus();
+    </script>
+  </body>
+</html>
