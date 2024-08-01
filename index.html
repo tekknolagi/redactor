@@ -7,10 +7,10 @@
   </head>
   <body>
     <p>Wrap the text you want to redact in angle brackets.</p>
-    <textarea id="input" rows="4" cols="50">foo <bar> baz</textarea>
+    <textarea id="input">foo <bar> baz</textarea>
     <br />
     <br />
-    <div id="output" style="width: 300px;"></div>
+    <div id="output" style="max-width: 300px;"></div>
     <script>
       var input = document.getElementById('input');
       var output = document.getElementById('output');
